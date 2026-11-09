@@ -21,6 +21,18 @@ int leer_entero(const char *mensaje, int minimo, int maximo)
         }
         valor = strtol(linea, &fin, 10);
         
-        /* COMPLETAR: tres chequeos*/
+                if (fin == linea) {
+            printf("Error: no ingresaste un numero.\n");
+            continue;
+        }
+        if (*fin != '\n' && *fin != '\0') {
+            printf("Error: ingrese solamente numeros.\n");
+            continue;
+        }
+        if (valor < minimo || valor > maximo) {
+            printf("Error: fuera de rango (%d a %d).\n", minimo, maximo);
+            continue;
+        }
+        return (int)valor;
     }
 }
