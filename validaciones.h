@@ -3,4 +3,6 @@
 
 void limpiarPantalla(void);
 
+int leer_entero(const char *mensaje, int minimo, int maximo);
+
 #endif
