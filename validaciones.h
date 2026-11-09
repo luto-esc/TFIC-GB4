@@ -2,5 +2,7 @@
 #define VALIDACIONES_H
 
 int leer_entero(const char *mensaje, int minimo, int maximo);
+double leer_flotante(const char *mensaje, double minimo, double maximo);
+char leer_caracter(const char *mensaje, const char *validos);
 
 #endif

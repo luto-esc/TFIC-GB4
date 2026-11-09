@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "validaciones.h"
 
 int leer_entero(const char *mensaje, int minimo, int maximo) {
@@ -30,5 +31,21 @@ int leer_entero(const char *mensaje, int minimo, int maximo) {
         }
 
         return (int)valor;
+    }
+}
+
+double leer_flotante(const char *mensaje, double minimo, double maximo) {
+    char linea[100];
+    char *fin;
+    double valor;
+
+    while (1) {
+        printf("%s", mensaje);
+        if (fgets(linea, sizeof(linea), stdin) == NULL) {
+            exit(1);
+        }
+        valor = strtod(linea, &fin);
+        
+        /* completar: tres chequeos, como en leer_entero*/
     }
 }
