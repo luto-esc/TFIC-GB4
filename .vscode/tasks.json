@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compilar programa C",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-finput-charset=UTF-8",
+                "-fexec-charset=UTF-8",
+                "${fileDirname}/main.c",
+                "${fileDirname}/artemis.c",
+                "${fileDirname}/validaciones.c",
+                "-o",
+                "${fileDirname}/programa.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}
