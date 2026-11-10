@@ -74,8 +74,8 @@ char leer_caracter(const char *mensaje, const char *validos) {
         if (fgets(linea, sizeof(linea), stdin) == NULL) {
             exit(1);
         }
-        
-                if (linea[0] == '\n') {
+
+        if (linea[0] == '\n') {
             printf("Error: no se escribio ningun caracter.\n");
             continue;
         }
