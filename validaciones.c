@@ -8,14 +8,12 @@ void limpiarPantalla(void)
 {
     system("cls");
 }
-
 void pausar(void)
 {
     printf("\nPresione una tecla para continuar...");
     _getch();
     limpiarPantalla();
 }
-
 int leer_entero(const char *mensaje, int minimo, int maximo) 
 {
     char linea[100];
@@ -83,7 +81,7 @@ char leer_caracter(const char *mensaje, const char *validos) {
             exit(1);
         }
         
-        if (linea[0] == '\n') {
+                if (linea[0] == '\n') {
             printf("Error: no se escribio ningun caracter.\n");
             continue;
         }
