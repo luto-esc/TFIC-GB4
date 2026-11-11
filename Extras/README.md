@@ -18,7 +18,7 @@ Nom y Ape  3 - legajo
 
 Nom y Ape  4 - legajo
 
-Francisco Ancarani - 28845 / FranciscoAncarani
+Francisco Ancarani - 28845
 
 DESCRIPCIÓN DEL ESCENARIO ASIGNADO
 
