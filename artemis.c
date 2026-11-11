@@ -178,31 +178,57 @@ void analizarEnergiaCinetica(const Mision *mision)
 // c) Trabajo externo mínimo hasta el punto de equilibrio
 void analizarTrabajoEquilibrio(const Mision *mision)
 {
-    // Constantes físicas del proyecto (definidas en artemis.h)
-    // G = 6.674e-11, MASA_TIERRA = 5.972e24, MASA_LUNA = 7.342e22
-    // Usamos las distancias de la estructura o las constantes de artemis.h
-    
-    printf("=== TRABAJO EXTERNO MÍNIMO (PUNTO DE EQUILIBRIO) ===\n\n");
-    printf("Situación: Desplazamiento desde la órbita LEO (h = %.2f m)\n", mision->alturaOrbital);
-    printf("hasta el punto neutro gravitatorio entre la Tierra y la Luna.\n\n");
-    
-    // Aquí calculamos analíticamente aplicando conservación de energía
-    // El punto de equilibrio gravitatorio (donde las fuerzas de la Tierra y Luna se anulan)
-    // se da aproximadamente a ~90% de la distancia Tierra-Luna hacia la Luna.
-    
-    double distanciaTierraPunto = mision->distanciaTierraLuna * 0.90; // Aproximación estándar para el punto de equilibrio
-    
-    printf("Parámetros analizados:\n");
-    printf(" - Distancia total Tierra-Luna: %.2f m\n", mision->distanciaTierraLuna);
-    printf(" - Distancia estimada al punto de equilibrio: %.2f m\n\n", distanciaTierraPunto);
-    
-    printf("Resultado del análisis:\n");
-    printf(" Mediante el principio de conservación de la energía mecánica (Em = K + U),\n");
-    printf(" el trabajo externo mínimo necesario por unidad de masa para vencer el pozo\n");
-    printf(" gravitatorio terrestre hasta alcanzar el punto de equilibrio es de:\n");
-    printf(" W_ext / m ≈ 5.85e7 J/kg\n");
-    printf("\n(Nota: Este valor representa la energía específica requerida para que la nave\n");
-    printf("alcance la zona donde la atracción de la Luna neutraliza a la de la Tierra).\n");
+    double rInicio;       // distancia inicial al centro de la Tierra (m)
+    double rEquilibrio;   // punto de equilibrio, desde el centro de la Tierra (m)
+    double uInicio;       // energía potencial por kg en la órbita (J/kg)
+    double uEquilibrio;   // energía potencial por kg en el equilibrio (J/kg)
+    double deltaU;        // energía potencial que hay que ganar (J/kg)
+    double kInicial;      // energía cinética por kg tras la TLI (J/kg)
+    double trabajo;       // trabajo adicional por kg (J/kg)
+    double vLlegada;      // velocidad al llegar al equilibrio (m/s)
+
+    rInicio = RADIO_TIERRA + mision->alturaOrbital;
+    rEquilibrio = calcularPuntoEquilibrio(mision);
+    uInicio = potencialGravitatorio(mision, rInicio);
+    uEquilibrio = potencialGravitatorio(mision, rEquilibrio);
+    deltaU = energiaIda(mision);
+    kInicial = 0.5 * mision->velocidadInicial * mision->velocidadInicial;
+
+    printf("=== TRABAJO EXTERNO MÍNIMO HASTA EL PUNTO DE EQUILIBRIO ===\n\n");
+    printf("Conservación de la energía mecánica (por unidad de masa):\n");
+    printf("  k_i + u_i + W_ext/m = k_f + u_f\n");
+    printf("El trabajo es mínimo cuando la nave llega con v = 0 (k_f = 0).\n\n");
+
+    printf("Datos:\n");
+    printf("  Órbita inicial:      %.0f km del centro de la Tierra\n", rInicio / 1000.0);
+    printf("  Punto de equilibrio: %.0f km del centro de la Tierra\n\n", rEquilibrio / 1000.0);
+
+    printf("Energía potencial por kg (u = -G*Mt/r - G*Ml/(D - r)):\n");
+    printf("  En la órbita:      %.4e J/kg\n", uInicio);
+    printf("  En el equilibrio:  %.4e J/kg\n", uEquilibrio);
+    printf("  Diferencia (du):   %.4e J/kg\n\n", deltaU);
+
+    printf("1) Partiendo del reposo en la órbita (k_i = 0):\n");
+    printf("   W_ext/m = du = %.4e J/kg\n\n", deltaU);
+
+    printf("2) Con la energía cinética de la TLI (v = %.2f m/s):\n", mision->velocidadInicial);
+    printf("   k_i = v^2 / 2 = %.4e J/kg\n", kInicial);
+
+    trabajo = deltaU - kInicial;
+
+    if (trabajo > 0)
+    {
+        printf("   W_ext/m = du - k_i = %.4e J/kg\n", trabajo);
+        printf("   La TLI no alcanza: faltan %.4e J por kg para llegar.\n", trabajo);
+        printf("   Para toda la nave: %.4e J\n", trabajo * mision->masa);
+    }
+    else
+    {
+        vLlegada = sqrt(2.0 * (kInicial - deltaU));
+        printf("   W_ext/m = 0 J/kg: no hace falta trabajo adicional.\n");
+        printf("   La energía de la TLI alcanza y la nave llega al\n");
+        printf("   equilibrio con %.2f m/s; desde ahí la Luna la atrae.\n", vLlegada);
+    }
 }
 
 //d) Comparación energética entre alunizaje y aterrizaje
