@@ -29,5 +29,9 @@ void configurarMision(Mision *mision);
 void preguntasAnalisis(const Mision *mision);
 void analizarEnergiaCinetica(const Mision *mision);
 void analizarTrabajoEquilibrio(const Mision *mision);
+double potencialGravitatorio(const Mision *mision, double r);
+double calcularPuntoEquilibrio(const Mision *mision);
+double energiaIda(const Mision *mision);
+double energiaVuelta(const Mision *mision);
 void analizarComparacionEnergetica(const Mision *mision);
 #endif
