@@ -16,6 +16,51 @@ double calcularEnergiaCinetica(const Mision *mision)
     return energia;
 }
 
+// Energía potencial por unidad de masa (J/kg) a una distancia r (m)
+// del centro de la Tierra, sobre la línea Tierra-Luna.
+// Suma la atracción de la Tierra y la de la Luna:
+// u = -G*Mt/r - G*Ml/(D - r)
+double potencialGravitatorio(const Mision *mision, double r)
+{
+    double distanciaALuna;
+
+    distanciaALuna = mision->distanciaTierraLuna - r;
+    return -G * MASA_TIERRA / r - G * MASA_LUNA / distanciaALuna;
+}
+
+// Distancia (m) desde el centro de la Tierra hasta el punto donde la
+// atracción de la Tierra y la de la Luna son iguales.
+// Sale de igualar G*Mt/x^2 = G*Ml/(D - x)^2 y despejar x.
+double calcularPuntoEquilibrio(const Mision *mision)
+{
+    return mision->distanciaTierraLuna / (1.0 + sqrt(MASA_LUNA / MASA_TIERRA));
+}
+
+// Energía por kg para ir desde la órbita baja terrestre
+// hasta el punto de equilibrio (J/kg).
+double energiaIda(const Mision *mision)
+{
+    double rInicio;
+    double rEquilibrio;
+
+    rInicio = RADIO_TIERRA + mision->alturaOrbital;
+    rEquilibrio = calcularPuntoEquilibrio(mision);
+    return potencialGravitatorio(mision, rEquilibrio)
+           - potencialGravitatorio(mision, rInicio);
+}
+
+// Energía por kg para ir desde la superficie de la Luna
+// hasta el punto de equilibrio (J/kg).
+double energiaVuelta(const Mision *mision)
+{
+    double rInicio;
+    double rEquilibrio;
+
+    rInicio = mision->distanciaTierraLuna - RADIO_LUNA;
+    rEquilibrio = calcularPuntoEquilibrio(mision);
+    return potencialGravitatorio(mision, rEquilibrio)
+           - potencialGravitatorio(mision, rInicio);
+}
 
 /* Menú de configuración de la misión */
 
@@ -163,13 +208,13 @@ void analizarTrabajoEquilibrio(const Mision *mision)
 //d) Comparación energética entre alunizaje y aterrizaje
 void analizarComparacionEnergetica(const Mision *mision)
 {
-    double rEquilibio;  //punto de equilibrio, desde el centro de la Tierra (m)
+    double rEquilibrio;  //punto de equilibrio, desde el centro de la Tierra (m)
     double ida;         //enegía por kg Tierra -> equilibio (J/kg)
     double vuelta;      //energía por kg Luna -> equilibio (J/kg)
 
     rEquilibrio = calcularPuntoEquilibrio(mision);
     ida = energiaIda(mision);
-    vueltaa = energiaVuelta(mision);
+    vuelta = energiaVuelta(mision);
 
     printf("=== COMPARACIÓN ENERGÉTICA ENTRE ALUNIZAJE Y ATERRIZAJE ===\n\n");
     printf("Entre la Tierra y la Luna hay un punto de equilibrio donde\n");
