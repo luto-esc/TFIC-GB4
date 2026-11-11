@@ -109,7 +109,7 @@ void preguntasAnalisis(const Mision *mision)
                 pausar();
                 break;
             case 4:
-                printf("Aún no se ha implementado\n");
+                analizarComparacionEnergetica(mision);
                 pausar();
                 break;
         }
