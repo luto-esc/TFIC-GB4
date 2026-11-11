@@ -29,4 +29,5 @@ void configurarMision(Mision *mision);
 void preguntasAnalisis(const Mision *mision);
 void analizarEnergiaCinetica(const Mision *mision);
 void analizarTrabajoEquilibrio(const Mision *mision);
+void analizarComparacionEnergetica(const Mision *mision);
 #endif
