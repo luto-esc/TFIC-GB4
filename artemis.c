@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include "artemis.h"
 #include "validaciones.h"
 
@@ -14,6 +15,7 @@ double calcularEnergiaCinetica(const Mision *mision)
 
     return energia;
 }
+
 
 /* Menú de configuración de la misión */
 
@@ -156,4 +158,51 @@ void analizarTrabajoEquilibrio(const Mision *mision)
     printf(" W_ext / m ≈ 5.85e7 J/kg\n");
     printf("\n(Nota: Este valor representa la energía específica requerida para que la nave\n");
     printf("alcance la zona donde la atracción de la Luna neutraliza a la de la Tierra).\n");
+}
+
+//d) Comparación energética entre alunizaje y aterrizaje
+void analizarComparacionEnergetica(const Mision *mision)
+{
+    double rEquilibio;  //punto de equilibrio, desde el centro de la Tierra (m)
+    double ida;         //enegía por kg Tierra -> equilibio (J/kg)
+    double vuelta;      //energía por kg Luna -> equilibio (J/kg)
+
+    rEquilibrio = calcularPuntoEquilibrio(mision);
+    ida = energiaIda(mision);
+    vueltaa = energiaVuelta(mision);
+
+    printf("=== COMPARACIÓN ENERGÉTICA ENTRE ALUNIZAJE Y ATERRIZAJE ===\n\n");
+    printf("Entre la Tierra y la Luna hay un punto de equilibrio donde\n");
+    printf("ambas atracciones son iguales. Para ir de un cuerpo al otro\n");
+    printf("hay que llegar hasta ese punto: después la gravedad del\n");
+    printf("destino hace el resto, sin gastar combustible.\n\n");
+
+    printf("Punto de equilibrio: %.0f km de la Tierra\n", rEquilibrio / 1000.0);
+    printf("                     %.0f km de la Luna\n\n",
+           (mision->distanciaTierraLuna - rEquilibrio) / 1000.0);
+
+    printf("Energía por kg para llegar al punto de equilibrio:\n");
+    printf("  Ida    (órbita terrestre -> equilibrio): %.3e J/kg\n", ida);
+    printf("  Vuelta (superficie lunar -> equilibrio): %.3e J/kg\n\n", vuelta);
+
+    printf("Para la nave completa (%.0f kg):\n", mision->masa);
+    printf("  Ida:    %.3e J\n", ida * mision->masa);
+    printf("  Vuelta: %.3e J\n\n", vuelta * mision->masa);
+
+    printf("La ida requiere %.1f veces más energía que la vuelta.\n\n",
+           ida / vuelta);
+
+    printf("Justificación:\n");
+    printf("- La Tierra tiene unas %.0f veces más masa que la Luna, así que\n",
+           MASA_TIERRA / MASA_LUNA);
+    printf("  su pozo de potencial (U = -G*M*m/r) es mucho más profundo.\n");
+    printf("- El punto de equilibrio está muy cerca de la Luna: a la ida\n");
+    printf("  hay que 'subir' casi todo el camino contra la gravedad\n");
+    printf("  terrestre; a la vuelta, solo un tramo corto contra la lunar.\n");
+    printf("- Por conservación de la energía (Em = K + U), esa diferencia\n");
+    printf("  de U la tiene que aportar el combustible de los motores.\n");
+    printf("- Además, el combustible también tiene masa: cuanto más se\n");
+    printf("  necesita, más pesa la nave y más combustible hace falta\n");
+    printf("  para moverlo. Por eso la diferencia de combustible es aún\n");
+    printf("  mayor que la diferencia de energía.\n");
 }
