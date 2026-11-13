@@ -22,7 +22,7 @@ int main(void)
         printf("        MENU PRINCIPAL\n");
         printf("================================\n");
         printf("1) Configurar misión (masa, v, D, h)\n");
-        printf("2) Preguntas de análisis\n");
+        printf("2) Preguntas para análisis\n");
         printf("3) Guardar/Cargar reporte\n");
         printf("0) Salir\n");
         printf("================================\n");

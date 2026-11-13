@@ -127,7 +127,7 @@ void preguntasAnalisis(const Mision *mision)
     do
     {
         printf("================================\n");
-        printf("     PREGUNTAS DE ANÁLISIS\n");
+        printf("    PREGUNTAS PARA ANÁLISIS\n");
         printf("================================\n\n");
         printf("¿Qué desea analizar?\n");
         printf("1) Aplicar y analizar la primera ley de Newton\n");
