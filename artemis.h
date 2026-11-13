@@ -7,6 +7,13 @@
 #define DISTANCIA_LUNA 384000000.0
 #define ALTURA_ORBITAL 192000.0
 
+// Constantes fisicas
+#define G 6.674e-11
+#define MASA_TIERRA 5.972e24
+#define MASA_LUNA 7.342e22
+#define RADIO_TIERRA 6378000.0
+#define RADIO_LUNA 1737400.0
+
 // Estructura para almacenar los parámetros de la misión
 typedef struct
 {
@@ -15,7 +22,17 @@ typedef struct
     double distanciaTierraLuna;
     double alturaOrbital;
 } Mision;
+
 // Prototipos de funciones
 double calcularEnergiaCinetica(const Mision *mision);
 void configurarMision(Mision *mision);
+void preguntasAnalisis(const Mision *mision);
+void analizarPrimeraLey(const Mision *mision);
+void analizarEnergiaCinetica(const Mision *mision);
+void analizarTrabajoEquilibrio(const Mision *mision);
+double potencialGravitatorio(const Mision *mision, double r);
+double calcularPuntoEquilibrio(const Mision *mision);
+double energiaIda(const Mision *mision);
+double energiaVuelta(const Mision *mision);
+void analizarComparacionEnergetica(const Mision *mision);
 #endif
