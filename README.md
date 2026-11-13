@@ -7,7 +7,7 @@
 - (completar)
 - (completar)
 - (completar)
-- (completar)
+- Ancarani Francisco Santiago
 
 ## Escenario asignado
 **Situación-Problema 3:** Inyección Translunar (TLI) e Inercia en Trayectoria Libre (1.ª Ley de Newton y Energía)
