@@ -34,7 +34,7 @@ Todas leen la línea completa con `fgets` y la convierten con `strtol`/`strtod`,
 - **Tareas:** explicación de `fgets`, `strtol`, `strtod`, `strchr` y punteros; esqueleto de las tres funciones; apoyo con la instalación del entorno (VS Code, gcc), Git/GitHub y errores del compilador.
 - **Cómo se validó y adaptó:** Claude propuso el esqueleto y la versión corregida de las funciones; yo escribí y corregí los chequeos, las compilé, y probé cada una con entradas erróneas (letras, `12abc`, fuera de rango, `nan`, solo Enter).
 
-- **De Maio Gastón: Claude**
+**De Maio Gastón: Claude**
 - **Uso de IA:** Asistencia en las funciones de cálculo energético del punto D, detección de errores y verificación en la coherencia del resultado.
 - **Adaptación y Validación:** El código sugerido por la IA no compilaba al comienzo, faltaban las funciones de cálculo. Había nombres de variables mal escritos. Lo fuimos corrigiendo con la IA y después probamos desde el menú, con los datos del enunciado, comprobando que la relación ida/vuelta daba cerca de 23 veces. Verificamos que el punto de equilibrio y la energía de ida coincidían con los del punto c, para que el programa no diera valores distintos.
 
