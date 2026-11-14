@@ -94,3 +94,6 @@ El `-lm` es necesario en Linux porque se usa `sqrt` (librería matemática). El 
 - **Uso de IA:** asistencia en la implementación de la pregunta C (`analizarTrabajoEquilibrio`), integración de las funciones modulares de potencial gravitatorio
 - Configuración del entorno de compilación (MSYS2/GCC y `Makefile`)
 - Compilé el proyecto completo con `make` sin errores y verifiqué el funcionamiento desde el menú ejecutando pruebas con distintos valores de velocidad inicial (TLI).
+
+ENLACE VIDEO
+https://drive.google.com/file/d/1-Y67zUdO0QHvP9q1roJa8iGZSi6Uuxmp/view?usp=drive_link
