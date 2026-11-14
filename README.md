@@ -5,7 +5,7 @@
 ## Integrantes
 - Casabuena Milagros Sofía
 - Escalante Lucio
-- (completar)
+- Puyol Ignacio Agustín
 - De Maio Gastón
 - Ancarani Francisco Santiago
 
