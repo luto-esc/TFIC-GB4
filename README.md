@@ -63,3 +63,7 @@ El `-lm` es necesario en Linux porque se usa `sqrt` (librería matemática). El 
 **De Maio Gastón: Claude**
 - **Uso de IA:** Asistencia en las funciones de cálculo energético del punto D, detección de errores y verificación en la coherencia del resultado.
 - **Adaptación y Validación:** El código sugerido por la IA no compilaba al comienzo, faltaban las funciones de cálculo. Había nombres de variables mal escritos. Lo fuimos corrigiendo con la IA y después probamos desde el menú, con los datos del enunciado, comprobando que la relación ida/vuelta daba cerca de 23 veces. Verificamos que el punto de equilibrio y la energía de ida coincidían con los del punto c, para que el programa no diera valores distintos.
+  
+**De Puyol Ignacio Agustin: ChatGPT**
+- **Uso de IA:** asistencia en la implementación de las preguntas A y B.
+- **Adaptación y Validación:** indiqué cómo debía resolverse cada punto aplicando conocimientos básicos de física, y la IA generó el código a partir de esa lógica. Luego integré las funciones de validación de entrada desarrolladas por mi compañera (leer_entero, leer_flotante) en los datos solicitados, agregué las llamadas al menú y al main, y modifiqué detalles del código, como la redacción de las respuestas de la pregunta A.
