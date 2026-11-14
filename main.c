@@ -2,11 +2,15 @@
 #include <stdlib.h>
 #include "artemis.h"
 #include "validaciones.h"
+#include "simulador.h"
 
 int main(void)
 {
-    system("chcp 65001 > nul");
+    #ifdef _WIN32
+        system("chcp 65001 > nul");   /* acentos en la consola de Windows (en Linux no hace falta) */
+    #endif
     Mision miMision;
+    Simulacion *historial = NULL; /* Lista de reportes al empezar esta vacia*/
     int opcion;
     char confirmar;
 
@@ -26,7 +30,7 @@ int main(void)
         printf("3) Guardar/Cargar reporte\n");
         printf("0) Salir\n");
         printf("================================\n");
-        opcion = leer_entero("Ingrese una opcion: ", 0, 5);
+        opcion = leer_entero("Ingrese una opcion: ", 0, 3);
         limpiarPantalla();
 
         switch (opcion)
@@ -40,8 +44,8 @@ int main(void)
             limpiarPantalla();
             break;
         case 3:
-            printf("Aún no disponible\n");
-            pausar();
+            historial = menu_reportes(historial, &miMision);
+            limpiarPantalla();
             break;
         case 0:
             confirmar = leer_caracter("¿Seguro desea cerrar el programa? (y/n): ", "yYnN");
@@ -53,6 +57,7 @@ int main(void)
             break;
         }
     }
+    historial = disponer_reportes(historial); /* devolver memoria*/
     printf("Programa finalizado.\n");
     return 0;
 }

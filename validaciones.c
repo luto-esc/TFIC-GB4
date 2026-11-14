@@ -1,17 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <conio.h>
 #include "validaciones.h"
+
+/* conio.h (de donde sale _getch) solo existe en Windows. */
+#ifdef _WIN32
+    #include <conio.h>
+#endif
 
 void limpiarPantalla(void)
 {
-    system("cls");
+#ifdef _WIN32
+    system("cls");      /* Windows */
+#else
+    system("clear");    /* Linux y macOS */
+#endif
 }
 void pausar(void)
 {
+#ifdef _WIN32
     printf("\nPresione una tecla para continuar...");
-    _getch();
+    _getch();           /* Windows: sigue apenas se aprieta una tecla */
+#else
+    printf("\nPresione Enter para continuar...");
+    getchar();          /* Linux: getchar necesita que se apriete Enter */
+#endif
     limpiarPantalla();
 }
 /*
