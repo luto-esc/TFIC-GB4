@@ -42,7 +42,14 @@ Guarda un historial de las simulaciones realizadas, en una **lista enlazada** en
 **Formato de `reportes.txt`:** `id;masa;velocidad;distancia;altura;energia;trabajo;fecha`
 
 ## Compilación y ejecución
-(completar)
+Requisito: compilador `gcc` (en Linux: `sudo apt install build-essential`; en Windows: MinGW-w64 / MSYS2).
+
+    gcc -Wall -Wextra main.c artemis.c validaciones.c simulador.c -o programa -lm
+    ./programa
+
+También con `make` (usa el `Makefile` del repositorio) y `make clean` para borrar el ejecutable. En Windows el ejecutable es `programa.exe`.
+
+El `-lm` es necesario en Linux porque se usa `sqrt` (librería matemática). El programa funciona en Windows y en Linux.
 
 ## Registro de uso de IA
 **Casabuena Milagros: Claude**
