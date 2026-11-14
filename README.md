@@ -97,3 +97,6 @@ El `-lm` es necesario en Linux porque se usa `sqrt` (librería matemática). El 
 
 ENLACE VIDEO
 https://drive.google.com/file/d/1-Y67zUdO0QHvP9q1roJa8iGZSi6Uuxmp/view?usp=drive_link
+
+ENLACE GITHUB
+https://github.com/luto-esc/TFIC-GB4/tree/main
