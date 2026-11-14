@@ -5,11 +5,7 @@
 ## Integrantes
 - Casabuena Milagros Sofía
 - Escalante Lucio
-<<<<<<< HEAD
-- Puyol Agustín
-=======
 - Puyol Ignacio Agustín
->>>>>>> origin/main
 - De Maio Gastón
 - Ancarani Francisco Santiago
 
