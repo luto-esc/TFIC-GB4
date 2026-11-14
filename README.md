@@ -5,18 +5,40 @@
 ## Integrantes
 - Casabuena Milagros Sofía
 - Escalante Lucio
-- (completar)
+- Puyol Agustín
 - De Maio Gastón
 - Ancarani Francisco Santiago
 
 ## Escenario asignado
 **Situación-Problema 3:** Inyección Translunar (TLI) e Inercia en Trayectoria Libre (1.ª Ley de Newton y Energía)
+Estando en órbita baja (LEO), la etapa superior ICPS ejecuta la maniobra de Inyección Translunar (TLI), impulsando a la nave Orion hasta una velocidad de inyección v_TLI = 10.900,0 m/s. Inmediatamente después del encendido, la etapa ICPS se desacopla y los motores principales se apagan por completo. La nave Orion (m = 26.000,0 kg) entra en una trayectoria de retorno libre hacia la Luna, ubicada a una distancia media Tierra-Luna de D = 384.000.000,0 m.
 
-### Descripción y reglas del juego
-(completar: lo escribe quien armó la simulación)
+### Descripción del programa
+El programa permite cargar los parámetros de la misión (masa, velocidad, distancia Tierra-Luna y altura orbital) y responder las cuatro preguntas de análisis del escenario. Todos los cálculos se hacen con los valores cargados, así que al cambiar un parámetro se pueden comparar distintos escenarios.
 
 ## Funcionamiento
-(completar: módulos y flujo general del programa)
+
+### Módulos
+| Archivo | Responsabilidad |
+|---|---|
+| `main.c` | Función `main()`, valores iniciales de la misión y menú principal. |
+| `artemis.h` | Constantes de la misión y físicas (`#define`), estructura `Mision` y prototipos. |
+| `artemis.c` | Menú de configuración, preguntas de análisis y cálculos físicos. |
+| `simulador.c/.h` | Reportes: historial de simulaciones en una lista enlazada, con guardado y carga desde archivo. |
+| `validaciones.c/.h` | Ingreso seguro de datos y utilidades de pantalla. |
+
+### Reglas del juego
+- Es un simulador por consola: no hay ganar ni perder, el objetivo es analizar la misión.
+- El usuario puede modificar los parámetros de la misión, cada uno dentro de un rango válido.
+- Todos los cálculos usan los valores cargados, así que se pueden comparar distintas configuraciones.
+- Cada simulación puede guardarse como reporte, y los reportes se guardan en un archivo y se vuelven a cargar.
+- Cualquier entrada inválida se rechaza y se vuelve a preguntar.
+
+### Menú principal
+1. **Configurar misión:** modifica masa, velocidad inicial, distancia Tierra-Luna y altura orbital.
+2. **Preguntas para análisis:** submenú con los puntos a, b, c y d del escenario.
+3. **Guardar/Cargar reporte:** genera, muestra, guarda y carga reportes.
+0. **Salir:** pide confirmación y libera la memoria antes de cerrar.
 
 ### Módulo de validaciones (`validaciones.c/.h`)
 Tres funciones de ingreso seguro, que reemplazan a `scanf` y vuelven a preguntar si el dato es inválido:
@@ -53,12 +75,12 @@ El `-lm` es necesario en Linux porque se usa `sqrt` (librería matemática). El 
 
 ## Registro de uso de IA
 **Casabuena Milagros: Claude**
-- **Tareas:** explicación de `fgets`, `strtol`, `strtod`, `strchr` y punteros; esqueleto de las tres funciones; apoyo con la instalación del entorno (VS Code, gcc), Git/GitHub y errores del compilador.
+- **Tareas:** explicación de `fgets`, `strtol`, `strtod`, `strchr` y punteros; esqueleto de las tres funciones; apoyo con la instalación del entorno (VS Code, gcc), Git/GitHub, esqueleto de Makefile y errores del compilador.
 - **Cómo se validó y adaptó:** Claude propuso el esqueleto y la versión corregida de las funciones; yo escribí y corregí los chequeos, las compilé, y probé cada una con entradas erróneas (letras, `12abc`, fuera de rango, `nan`, solo Enter).
 
 **Escalante Lucio: Claude**
-- **Uso de IA:** asistencia con manejo de archivos de texto (`fopen`, `fprintf`, `fgets`, `sscanf`);.
-- **Adaptación y Validación:** Lo compilé y probé en Linux generando reportes con distintas configuraciones, guardándolos en `reportes.txt` y volviéndolos a cargar. Testeos del codigo exitosos por la el modelo utilizado.
+- **Uso de IA:** asistencia con manejo de archivos de texto (`fopen`, `fprintf`, `fgets`, `sscanf`).
+- **Adaptación y Validación:** Lo compilé y probé en Linux generando reportes con distintas configuraciones, guardándolos en `reportes.txt` y volviéndolos a cargar. Testeos del codigo exitosos.
 
 **De Maio Gastón: Claude**
 - **Uso de IA:** Asistencia en las funciones de cálculo energético del punto D, detección de errores y verificación en la coherencia del resultado.
