@@ -93,3 +93,8 @@ El `-lm` es necesario en Linux porque se usa `sqrt` (librería matemática). El 
 **De Puyol Ignacio Agustin: ChatGPT**
 - **Uso de IA:** asistencia en la implementación de las preguntas A y B.
 - Indiqué cómo debía resolverse cada punto aplicando conocimientos básicos de física, y la IA generó el código a partir de esa lógica. Luego integré las funciones de validación de entrada desarrolladas por mi compañera (leer_entero, leer_flotante) en los datos solicitados, agregué las llamadas al menú y al main, y modifiqué detalles del código, como la redacción de las respuestas de la pregunta A.
+
+**De Ancarani Francisco Santiago: Gemini**
+- **Uso de IA:** asistencia en la implementación de la pregunta C (`analizarTrabajoEquilibrio`), integración de las funciones modulares de potencial gravitatorio
+- Configuración del entorno de compilación (MSYS2/GCC y `Makefile`)
+- Compilé el proyecto completo con `make` sin errores y verifiqué el funcionamiento desde el menú ejecutando pruebas con distintos valores de velocidad inicial (TLI).
